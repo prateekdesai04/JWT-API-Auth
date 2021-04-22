@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 require('dotenv/config');
 
 const authRoutes = require('./routes/auth');
+const postRoute = require('./routes/posts'); //import a protected route
 
 // USING BODY PARSER (A Middleware) - Parses the request body
 app.use(express.urlencoded({ extended: true })); // here this will execute when we hit any request, this is a middleware
@@ -11,6 +12,7 @@ app.use(express.json());
 
 // CREATE ROUTES
 app.use('/users', authRoutes);
+app.use('/posts', postRoute); // using private route after navigating there
 
 // CONNECT TO DB
 mongoose.connect(
